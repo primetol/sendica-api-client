@@ -1,6 +1,7 @@
 {
   "name": "primetol/sendica-api-client",
   "description": "Sendica API Client",
+  "minimum-stability": "dev",
   "keywords": [
     "sendica",
     "sendica api",
@@ -21,7 +22,6 @@
       "url": "https://github.com/primetol/sendica-api-client"
     }
   ],
-  "minimum-stability": "dev",
   "require": {
     "php": ">=5.6"
   },
