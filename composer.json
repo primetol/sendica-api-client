@@ -1,0 +1,21 @@
+{
+  "name": "primetol/sendica-api-client",
+  "description": "Sendica API Client",
+  "type": "package",
+  "authors": [
+    {
+      "name": "Tol",
+      "email": "a.beketov@primecore.io"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://github.com/primetol/sendica-api-client"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "primetol/sendica-api-client": "master"
+  }
+}
