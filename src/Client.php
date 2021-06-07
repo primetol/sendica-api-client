@@ -5,20 +5,34 @@ namespace SendicaApi;
 use SendicaApi\Exception\NetworkException;
 use SendicaApi\Exception\RequestException;
 
-class Client
+final class Client
 {
+    const API_VERSION = '0.0.1';
+
     const API_BASE_PATH = 'https://sendica.bg/api/';
     /** @var array */
-    private $config;
+    private static $config;
 
-    public function __construct(array $config = [])
+    private function __construct()
+    { }
+
+    public static function init(array $config = [])
     {
-        $this->config = array_merge([
+        self::$config = array_merge([
             'base_path' => self::API_BASE_PATH,
             'api_key'   => '',
         ], $config);
+
+        return new self;
     }
 
+    /**
+     * @param string $method
+     * @param string $url
+     * @param array  $data
+     *
+     * @return array
+     */
     public function request($method, $url, $data)
     {
         $url = self::API_BASE_PATH . $url;
@@ -50,13 +64,14 @@ class Client
         // OPTIONS:
         curl_setopt($curlHandler, CURLOPT_URL, $url);
         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, [
-            'authorization: bearer ' . $this->config['api_key'],
+            'authorization: bearer ' . self::$config['api_key'],
+            'user-agent: Sendica API Client v.' . self::API_VERSION,
             'content-type: application/json',
         ]);
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curlHandler, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
-        // EXECUTE:
+        /** @var array $result */
         $result = curl_exec($curlHandler);
 
         $errno = curl_errno($curlHandler);
@@ -78,6 +93,4 @@ class Client
 
         return $result;
     }
-
-
 }
