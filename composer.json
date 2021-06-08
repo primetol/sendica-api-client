@@ -1,7 +1,7 @@
 {
   "name": "primetol/sendica-api-client",
   "description": "Sendica API Client",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "keywords": [
     "sendica",
     "sendica api",
