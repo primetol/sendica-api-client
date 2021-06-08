@@ -17,7 +17,12 @@ abstract class AbstractRequest implements RequestInterface
         $this->client = $client;
     }
 
-    public function get($identifier = null)
+    public function get($identifier)
+    {
+        throw new NotImplementedException;
+    }
+
+    public function collection()
     {
         throw new NotImplementedException;
     }

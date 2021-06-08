@@ -11,6 +11,19 @@ final class Order implements ModelInterface
     /** @var OrderProduct[] */
     private $orderProducts;
 
+    public function __construct(array $data = [])
+    {
+        if (isset($data['recipient'])) {
+            $this->setOrderRecipient(new OrderRecipient($data['recipient']));
+        }
+
+        if (isset($data['order_products'])) {
+            foreach ($data['order_products'] as $product) {
+                $this->addOrderProduct(new OrderProduct($product));
+            }
+        }
+    }
+
     /**
      * @param OrderRecipient $orderRecipient
      *

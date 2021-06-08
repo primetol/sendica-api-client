@@ -4,16 +4,17 @@ namespace SendicaApi\Request;
 
 use SendicaApi\Response\StringResponse;
 
+/**
+ * @method string getData()
+ */
 class GreetingRequest extends AbstractRequest
 {
-    private $endpoint = '/greeting';
-
     /**
-     * @param null $identifier
+     * @return StringResponse
      */
-    public function get($identifier = null)
+    public function greeting()
     {
-        $result = $this->client->request('GET', $this->endpoint, []);
+        $result = $this->client->request('GET', '/greeting', []);
 
         return new StringResponse($result);
     }

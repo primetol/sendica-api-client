@@ -11,6 +11,17 @@ final class OrderProduct implements ModelInterface
     /** @var string */
     private $sku;
 
+    public function __construct(array $data = [])
+    {
+        if (isset($data['sku'])) {
+            $this->setSku($data['sku']);
+        }
+
+        if (isset($data['quantity'])) {
+            $this->setQuantity($data['quantity']);
+        }
+    }
+
     /**
      * @return int
      */

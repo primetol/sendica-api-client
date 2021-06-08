@@ -17,6 +17,30 @@ final class OrderRecipient implements ModelInterface
     /** @var DeliveryCourierOffice|null */
     private $deliveryCourierOffice;
 
+
+    public function __construct(array $data = [])
+    {
+        if (isset($data['name'])) {
+            $this->setName($data['name']);
+        }
+
+        if (isset($data['email'])) {
+            $this->setEmail($data['email']);
+        }
+
+        if (isset($data['phone'])) {
+            $this->setPhone($data['phone']);
+        }
+
+        if (isset($data['delivery_address'])) {
+            $this->setDeliveryAddress(new DeliveryAddress($data['delivery_address']));
+        }
+
+        if (isset($data['delivery_courier_office'])) {
+            $this->setDeliveryCourierOffice(new DeliveryCourierOffice($data['delivery_courier_office']));
+        }
+    }
+
     /**
      * @param string $name
      *

@@ -23,6 +23,41 @@ final class DeliveryAddress implements ModelInterface
     /** @var string */
     private $zipCode;
 
+    public function __construct(array $data = [])
+    {
+        if (isset($data['company'])) {
+            $this->setCompany($data['company']);
+        }
+
+        if (isset($data['address'])) {
+            $this->setAddress($data['address']);
+        }
+
+        if (isset($data['street_number'])) {
+            $this->setStreetNumber($data['street_number']);
+        }
+
+        if (isset($data['neighborhood'])) {
+            $this->setNeighborhood($data['neighborhood']);
+        }
+
+        if (isset($data['city'])) {
+            $this->setCity($data['city']);
+        }
+
+        if (isset($data['state'])) {
+            $this->setState($data['state']);
+        }
+
+        if (isset($data['country'])) {
+            $this->setCountry($data['country']);
+        }
+
+        if (isset($data['zip_code'])) {
+            $this->setZipCode($data['zip_code']);
+        }
+    }
+
     /**
      * @param string|null $company
      *

@@ -7,9 +7,14 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 interface RequestInterface
 {
     /**
-     * @var ModelInterface|ModelInterface[]
+     * @return ModelInterface
      */
-    public function get($identifier = null);
+    public function get($identifier);
+
+    /**
+     * @return ModelInterface[]
+     */
+    public function collection();
 
     /**
      * @param ModelInterface $model

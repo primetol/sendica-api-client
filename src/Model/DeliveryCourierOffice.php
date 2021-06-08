@@ -4,12 +4,23 @@ namespace SendicaApi\Model;
 
 use SendicaApi\Model\Interfaces\ModelInterface;
 
-class DeliveryCourierOffice implements ModelInterface
+final class DeliveryCourierOffice implements ModelInterface
 {
     /** @var string */
     private $shippingCourier;
     /** @var string */
     private $courierOfficeId;
+
+    public function __construct(array $data = [])
+    {
+        if (isset($data['courier_office_id'])) {
+            $this->setCourierOfficeId($data['courier_office_id']);
+        }
+
+        if (isset($data['shipping_courier'])) {
+            $this->setShippingCourier($data['shipping_courier']);
+        }
+    }
 
     /**
      * @param string $shippingCourier
