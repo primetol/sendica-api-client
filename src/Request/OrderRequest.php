@@ -15,4 +15,11 @@ class OrderRequest extends AbstractRequest
 
         return new OrderResponse($result);
     }
+
+    public function collection()
+    {
+        $result = $this->client->request('GET', '/orders', []);
+
+        return new OrderResponse($result);
+    }
 }

@@ -4,7 +4,7 @@
 namespace SendicaApi\Response;
 
 /**
- * @method string getData
+ * @method string getData()
  */
 class StringResponse extends AbstractResponse
 {

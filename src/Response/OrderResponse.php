@@ -4,6 +4,9 @@ namespace SendicaApi\Response;
 
 use SendicaApi\Model\Order;
 
+/**
+ * @method Order|Order[] getData()
+ */
 class OrderResponse extends AbstractResponse
 {
     public function handleResponse()
