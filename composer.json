@@ -15,8 +15,8 @@
     "ext-curl": "*"
   },
   "autoload": {
-    "psr-0": {
-      "SendicaApi": "src/"
+    "psr-4": {
+      "SendicaApi\\": "src/"
     }
   }
 }
