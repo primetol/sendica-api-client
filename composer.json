@@ -15,21 +15,6 @@
       "email": "a.beketov@primecore.io"
     }
   ],
-  "type": "package",
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "primetol/sendica-api-client",
-        "version": "master",
-        "source": {
-          "url": "https://github.com/primetol/sendica-api-client",
-          "type": "git",
-          "reference": "dev-master"
-        }
-      }
-    }
-  ],
   "require": {
     "php": ">=5.6|>=7.4",
     "ext-curl": "*"
