@@ -9,7 +9,8 @@ final class Client
 {
     const API_VERSION = '0.0.1';
 
-    const API_BASE_PATH = 'https://sendica.bg/api/';
+    const API_BASE_PATH = 'https://sendica.bg/api';
+
     /** @var array */
     private static $config;
 
@@ -35,7 +36,7 @@ final class Client
      */
     public function request($method, $url, $data)
     {
-        $url = self::API_BASE_PATH . $url;
+        $url = self::$config['base_path'] . $url;
         $curlHandler = curl_init();
 
         switch ($method) {
@@ -48,8 +49,9 @@ final class Client
 
                 break;
 
-            case 'PUT':
-                curl_setopt($curlHandler, CURLOPT_CUSTOMREQUEST, 'PUT');
+            case 'PATCH':
+                curl_setopt($curlHandler, CURLOPT_CUSTOMREQUEST, 'PATCH');
+
                 if ($data) {
                     curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $data);
                 }
@@ -61,7 +63,7 @@ final class Client
                     $url = $url . '?' . http_build_query($data);
                 }
         }
-        // OPTIONS:
+
         curl_setopt($curlHandler, CURLOPT_URL, $url);
         curl_setopt($curlHandler, CURLOPT_HTTPHEADER, [
             'authorization: bearer ' . self::$config['api_key'],
@@ -71,11 +73,11 @@ final class Client
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curlHandler, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
-        /** @var array $result */
-        $result = curl_exec($curlHandler);
+        $result = json_decode(curl_exec($curlHandler), true);
 
         $errno = curl_errno($curlHandler);
         $errMess = curl_error($curlHandler);
+
         curl_close($curlHandler);
 
         switch ($errno) {

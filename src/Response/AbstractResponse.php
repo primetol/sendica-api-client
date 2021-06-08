@@ -36,11 +36,6 @@ abstract class AbstractResponse implements ResponseInterface
         $this->handleResponse();
     }
 
-//    protected function handleCommonResponse()
-//    {
-//        // TODO array, string, float, integer, boolean response data
-//    }
-
     public function getStatus()
     {
         return $this->status;
