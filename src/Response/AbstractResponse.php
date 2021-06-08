@@ -3,7 +3,6 @@
 namespace SendicaApi\Response;
 
 use SendicaApi\Interfaces\ResponseInterface;
-use SendicaApi\Model\Interfaces\ModelInterface;
 
 abstract class AbstractResponse implements ResponseInterface
 {
@@ -14,10 +13,6 @@ abstract class AbstractResponse implements ResponseInterface
     /** @var string */
     protected $message;
 
-    /** @var ModelInterface */
-    protected $one;
-    /** @var ModelInterface[] */
-    protected $list;
     /** @var array */
     protected $response;
     /** @var mixed */
@@ -54,5 +49,10 @@ abstract class AbstractResponse implements ResponseInterface
     public function getData()
     {
         return $this->data;
+    }
+
+    public function getResponse()
+    {
+        return $this->response;
     }
 }

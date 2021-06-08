@@ -6,6 +6,10 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 
 final class Order implements ModelInterface
 {
+    /** @var int */
+    private $id;
+    /** @var string */
+    private $status;
     /** @var OrderRecipient */
     private $orderRecipient;
     /** @var OrderProduct[] */
@@ -13,15 +17,49 @@ final class Order implements ModelInterface
 
     public function __construct(array $data = [])
     {
+        if (isset($data['id'])) {
+            $this->setId($data['id']);
+        }
+
+        if (isset($data['status'])) {
+            $this->setStatus($data['status']);
+        }
+
         if (isset($data['recipient'])) {
             $this->setOrderRecipient(new OrderRecipient($data['recipient']));
         }
 
         if (isset($data['order_products'])) {
+            $this->orderProducts = [];
+
             foreach ($data['order_products'] as $product) {
                 $this->addOrderProduct(new OrderProduct($product));
             }
         }
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**

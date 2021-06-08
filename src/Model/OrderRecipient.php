@@ -17,7 +17,6 @@ final class OrderRecipient implements ModelInterface
     /** @var DeliveryCourierOffice|null */
     private $deliveryCourierOffice;
 
-
     public function __construct(array $data = [])
     {
         if (isset($data['name'])) {

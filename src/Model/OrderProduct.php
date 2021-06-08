@@ -7,19 +7,43 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 final class OrderProduct implements ModelInterface
 {
     /** @var int */
+    private $id;
+    /** @var int */
     private $quantity;
-    /** @var string */
-    private $sku;
+    /** @var Product */
+    private $product;
 
     public function __construct(array $data = [])
     {
-        if (isset($data['sku'])) {
-            $this->setSku($data['sku']);
+        if (isset($data['id'])) {
+            $this->setId($data['id']);
         }
 
         if (isset($data['quantity'])) {
             $this->setQuantity($data['quantity']);
         }
+
+        if (isset($data['product'])) {
+            $this->setProduct(new Product($data['product']));
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -43,21 +67,21 @@ final class OrderProduct implements ModelInterface
     }
 
     /**
-     * @return string
+     * @return Product
      */
-    public function getSku()
+    public function getProduct()
     {
-        return $this->sku;
+        return $this->product;
     }
 
     /**
-     * @param string $sku
+     * @param Product $product
      *
      * @return $this
      */
-    public function setSku($sku)
+    public function setProduct($product)
     {
-        $this->sku = $sku;
+        $this->product = $product;
 
         return $this;
     }
@@ -65,7 +89,8 @@ final class OrderProduct implements ModelInterface
     public function toArray()
     {
         return [
-            'sku'      => $this->getSku(),
+            'id'       => $this->getId(),
+            'product'  => $this->getProduct(),
             'quantity' => $this->getQuantity(),
         ];
     }
