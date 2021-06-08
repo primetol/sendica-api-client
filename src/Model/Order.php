@@ -9,6 +9,8 @@ final class Order implements ModelInterface
     /** @var int */
     private $id;
     /** @var string */
+    private $refId;
+    /** @var string */
     private $status;
     /** @var OrderRecipient */
     private $orderRecipient;
@@ -18,22 +20,26 @@ final class Order implements ModelInterface
     public function __construct(array $data = [])
     {
         if (isset($data['id'])) {
-            $this->setId($data['id']);
+            $this->id = $data['id'];
+        }
+
+        if (isset($data['ref_id'])) {
+            $this->refId = $data['ref_id'];
         }
 
         if (isset($data['status'])) {
-            $this->setStatus($data['status']);
+            $this->status = $data['status'];
         }
 
         if (isset($data['recipient'])) {
-            $this->setOrderRecipient(new OrderRecipient($data['recipient']));
+            $this->orderRecipient = new OrderRecipient($data['recipient']);
         }
 
         if (isset($data['order_products'])) {
             $this->orderProducts = [];
 
             foreach ($data['order_products'] as $product) {
-                $this->addOrderProduct(new OrderProduct($product));
+                $this->orderProducts[] = new OrderProduct($product);
             }
         }
     }
@@ -43,11 +49,16 @@ final class Order implements ModelInterface
         return $this->id;
     }
 
-    public function setId($id)
+    public function setRefId($refId)
     {
-        $this->id = $id;
+        $this->refId = $refId;
 
         return $this;
+    }
+
+    public function getRefId()
+    {
+        return $this->refId;
     }
 
     public function setStatus($status)
@@ -62,11 +73,6 @@ final class Order implements ModelInterface
         return $this->status;
     }
 
-    /**
-     * @param OrderRecipient $orderRecipient
-     *
-     * @return Order
-     */
     public function setOrderRecipient(OrderRecipient $orderRecipient)
     {
         $this->orderRecipient = $orderRecipient;
@@ -74,19 +80,11 @@ final class Order implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return OrderRecipient
-     */
     public function getOrderRecipient()
     {
         return $this->orderRecipient;
     }
 
-    /**
-     * @param OrderProduct $orderProduct
-     *
-     * @return Order
-     */
     public function addOrderProduct(OrderProduct $orderProduct)
     {
         $this->orderProducts[] = $orderProduct;
@@ -94,11 +92,6 @@ final class Order implements ModelInterface
         return $this;
     }
 
-    /**
-     * @param OrderProduct[] $orderProducts
-     *
-     * @return Order
-     */
     public function setOrderProducts(array $orderProducts)
     {
         $this->orderProducts = [];
@@ -110,9 +103,6 @@ final class Order implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return OrderProduct[]
-     */
     public function getOrderProducts()
     {
         return $this->orderProducts;

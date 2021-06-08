@@ -16,15 +16,15 @@ final class OrderProduct implements ModelInterface
     public function __construct(array $data = [])
     {
         if (isset($data['id'])) {
-            $this->setId($data['id']);
+            $this->id = $data['id'];
         }
 
         if (isset($data['quantity'])) {
-            $this->setQuantity($data['quantity']);
+            $this->quantity = $data['quantity'];
         }
 
         if (isset($data['product'])) {
-            $this->setProduct(new Product($data['product']));
+            $this->product = new Product($data['product']);
         }
     }
 
@@ -34,16 +34,6 @@ final class OrderProduct implements ModelInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**

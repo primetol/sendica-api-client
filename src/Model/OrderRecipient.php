@@ -20,31 +20,26 @@ final class OrderRecipient implements ModelInterface
     public function __construct(array $data = [])
     {
         if (isset($data['name'])) {
-            $this->setName($data['name']);
+            $this->name = $data['name'];
         }
 
         if (isset($data['email'])) {
-            $this->setEmail($data['email']);
+            $this->email = $data['email'];
         }
 
         if (isset($data['phone'])) {
-            $this->setPhone($data['phone']);
+            $this->phone = $data['phone'];
         }
 
         if (isset($data['delivery_address'])) {
-            $this->setDeliveryAddress(new DeliveryAddress($data['delivery_address']));
+            $this->deliveryAddress = new DeliveryAddress($data['delivery_address']);
         }
 
         if (isset($data['delivery_courier_office'])) {
-            $this->setDeliveryCourierOffice(new DeliveryCourierOffice($data['delivery_courier_office']));
+            $this->deliveryCourierOffice = new DeliveryCourierOffice($data['delivery_courier_office']);
         }
     }
 
-    /**
-     * @param string $name
-     *
-     * @return OrderRecipient
-     */
     public function setName($name)
     {
         $this->name = $name;
@@ -52,19 +47,11 @@ final class OrderRecipient implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return OrderRecipient
-     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -72,19 +59,11 @@ final class OrderRecipient implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * @param string $phone
-     *
-     * @return OrderRecipient
-     */
     public function setPhone($phone)
     {
         $this->phone = $phone;
@@ -92,49 +71,30 @@ final class OrderRecipient implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getPhone()
     {
         return $this->phone;
     }
 
-    /**
-     * @param DeliveryAddress|null $deliveryAddress
-     *
-     * @return OrderRecipient
-     */
-    public function setDeliveryAddress($deliveryAddress)
+    public function setDeliveryAddress(DeliveryAddress $deliveryAddress)
     {
         $this->deliveryAddress = $deliveryAddress;
 
         return $this;
     }
 
-    /**
-     * @return DeliveryAddress|null
-     */
     public function getDeliveryAddress()
     {
         return $this->deliveryAddress;
     }
 
-    /**
-     * @param DeliveryCourierOffice|null $deliveryCourierOffice
-     *
-     * @return OrderRecipient
-     */
-    public function setDeliveryCourierOffice($deliveryCourierOffice)
+    public function setDeliveryCourierOffice(DeliveryCourierOffice $deliveryCourierOffice)
     {
         $this->deliveryCourierOffice = $deliveryCourierOffice;
 
         return $this;
     }
 
-    /**
-     * @return DeliveryCourierOffice|null
-     */
     public function getDeliveryCourierOffice()
     {
         return $this->deliveryCourierOffice;

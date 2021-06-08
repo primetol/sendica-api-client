@@ -14,45 +14,24 @@ final class Product implements ModelInterface
     public function __construct(array $data = [])
     {
         if (isset($data['id'])) {
-            $this->setId($data['id']);
+            $this->id = $data['id'];
         }
 
         if (isset($data['sku'])) {
-            $this->setSku($data['sku']);
+            $this->sku = $data['sku'];
         }
     }
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getSku()
     {
         return $this->sku;
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return $this
-     */
     public function setSku($sku)
     {
         $this->sku = $sku;
