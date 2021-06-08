@@ -1,30 +1,22 @@
 {
-  "name": "primetol/sendica-api-client",
-  "description": "Sendica API Client",
-  "minimum-stability": "stable",
-  "keywords": [
-    "sendica",
-    "sendica api",
-    "sendica client"
-  ],
-  "homepage": "https://github.com/primetol/sendica-api-client",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Tol",
-      "email": "a.beketov@primecore.io"
+    "name": "primetol/sendica-api-client",
+    "description": "Sendica API Client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tol",
+            "email": "a.beketov@primecore.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": ">=5.6|>=7.4",
+      "ext-curl": "*"
+    },
+    "autoload": {
+      "psr-0": {
+        "SendicaApi": "src/"
+      }
     }
-  ],
-  "require": {
-    "php": ">=5.6|>=7.4",
-    "ext-curl": "*"
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "autoload": {
-    "psr-4": {
-      "SendicaApi\\": "src/"
-    }
-  }
 }
