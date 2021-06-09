@@ -21,7 +21,7 @@ final class DeliveryAddress implements ModelInterface
     /** @var string */
     private $zipCode;
     /** @var string */
-    private $shippingCourierType;
+    private $shippingCourier;
 
     public function __construct(array $data = [])
     {
@@ -54,8 +54,8 @@ final class DeliveryAddress implements ModelInterface
             $this->zipCode = $data['zip_code'];
         }
 
-        if (isset($data['shipping_courier_type'])) {
-            $this->shippingCourierType = $data['shipping_courier_type'];
+        if (isset($data['shipping_courier'])) {
+            $this->shippingCourier = $data['shipping_courier'];
         }
     }
 
@@ -143,14 +143,14 @@ final class DeliveryAddress implements ModelInterface
         return $this->zipCode;
     }
 
-    public function getShippingCourierType()
+    public function getShippingCourier()
     {
-        return $this->shippingCourierType;
+        return $this->shippingCourier;
     }
 
-    public function setShippingCourierType($shippingCourierType)
+    public function setShippingCourier($shippingCourier)
     {
-        $this->shippingCourierType = $shippingCourierType;
+        $this->shippingCourier = $shippingCourier;
 
         return $this;
     }
@@ -158,14 +158,14 @@ final class DeliveryAddress implements ModelInterface
     public function toArray()
     {
         return [
-            'address'               => $this->getAddress(),
-            'street_number'         => $this->getStreetNumber(),
-            'neighborhood'          => $this->getNeighborhood(),
-            'city'                  => $this->getCity(),
-            'state'                 => $this->getState(),
-            'country'               => $this->getCountry(),
-            'zip_code'              => $this->getZipCode(),
-            'shipping_courier_type' => $this->getShippingCourierType(),
+            'address'          => $this->getAddress(),
+            'street_number'    => $this->getStreetNumber(),
+            'neighborhood'     => $this->getNeighborhood(),
+            'city'             => $this->getCity(),
+            'state'            => $this->getState(),
+            'country'          => $this->getCountry(),
+            'zip_code'         => $this->getZipCode(),
+            'shipping_courier' => $this->getShippingCourier(),
         ];
     }
 }

@@ -79,9 +79,9 @@ final class OrderProduct implements ModelInterface
     public function toArray()
     {
         return [
-            'id'       => $this->getId(),
-            'product'  => $this->getProduct(),
-            'quantity' => $this->getQuantity(),
+            'id'       => $this->id,
+            'product'  => $this->product ? $this->product->toArray() : null,
+            'quantity' => $this->quantity,
         ];
     }
 }

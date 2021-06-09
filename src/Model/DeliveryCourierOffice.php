@@ -9,7 +9,7 @@ final class DeliveryCourierOffice implements ModelInterface
     /** @var string */
     private $courierOfficeId;
     /** @var string */
-    private $shippingCourierType;
+    private $shippingCourier;
 
     public function __construct(array $data = [])
     {
@@ -17,8 +17,8 @@ final class DeliveryCourierOffice implements ModelInterface
             $this->courierOfficeId = $data['courier_office_id'];
         }
 
-        if (isset($data['shipping_courier_type'])) {
-            $this->shippingCourierType = $data['shipping_courier_type'];
+        if (isset($data['shipping_courier'])) {
+            $this->shippingCourier = $data['shipping_courier'];
         }
     }
 
@@ -35,14 +35,14 @@ final class DeliveryCourierOffice implements ModelInterface
     }
 
 
-    public function getShippingCourierType()
+    public function getShippingCourier()
     {
-        return $this->shippingCourierType;
+        return $this->shippingCourier;
     }
 
-    public function setShippingCourierType($shippingCourierType)
+    public function setShippingCourier($shippingCourier)
     {
-        $this->shippingCourierType = $shippingCourierType;
+        $this->shippingCourier = $shippingCourier;
 
         return $this;
     }
@@ -50,8 +50,8 @@ final class DeliveryCourierOffice implements ModelInterface
     public function toArray()
     {
         return [
-            'courier_office_id'     => $this->getCourierOfficeId(),
-            'shipping_courier_type' => $this->getShippingCourierType(),
+            'courier_office_id' => $this->getCourierOfficeId(),
+            'shipping_courier'  => $this->getShippingCourier(),
         ];
     }
 }

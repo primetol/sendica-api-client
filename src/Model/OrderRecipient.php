@@ -6,12 +6,17 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 
 final class OrderRecipient implements ModelInterface
 {
+    const DELIVERY_METHOD_ADDRESS = 'delivery_address';
+    const DELIVERY_METHOD_COURIER_OFFICE = 'courier_office';
+
     /** @var string */
     private $name;
     /** @var string */
     private $email;
     /** @var string */
     private $phone;
+    /** @var string */
+    private $deliveryMethod;
     /** @var DeliveryAddress|null */
     private $deliveryAddress;
     /** @var DeliveryCourierOffice|null */
@@ -29,6 +34,10 @@ final class OrderRecipient implements ModelInterface
 
         if (isset($data['phone'])) {
             $this->phone = $data['phone'];
+        }
+
+        if (isset($data['delivery_method'])) {
+            $this->deliveryMethod = $data['delivery_method'];
         }
 
         if (isset($data['delivery_address'])) {
@@ -76,6 +85,18 @@ final class OrderRecipient implements ModelInterface
         return $this->phone;
     }
 
+    public function setDeliveryMethod($deliveryMethod)
+    {
+        $this->deliveryMethod = $deliveryMethod;
+
+        return $this;
+    }
+
+    public function getDeliveryMethod()
+    {
+        return $this->deliveryMethod;
+    }
+
     public function setDeliveryAddress(DeliveryAddress $deliveryAddress = null)
     {
         $this->deliveryAddress = $deliveryAddress;
@@ -103,11 +124,12 @@ final class OrderRecipient implements ModelInterface
     public function toArray()
     {
         return [
-            'name'                    => $this->getName(),
-            'email'                   => $this->getEmail(),
-            'phone'                   => $this->getPhone(),
-            'delivery_address'        => $this->getDeliveryAddress()->toArray(),
-            'delivery_courier_office' => $this->getDeliveryCourierOffice()->toArray(),
+            'name'                    => $this->name,
+            'email'                   => $this->email,
+            'phone'                   => $this->phone,
+            'delivery_method'         => $this->deliveryMethod,
+            'delivery_address'        => $this->deliveryAddress ? $this->deliveryAddress->toArray() : null,
+            'delivery_courier_office' => $this->deliveryCourierOffice ? $this->deliveryCourierOffice->toArray() : null,
         ];
     }
 }

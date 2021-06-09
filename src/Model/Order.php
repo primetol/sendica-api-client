@@ -105,8 +105,7 @@ final class Order implements ModelInterface
     {
         return [
             'refId'          => $this->getRefId(),
-            'status'         => $this->getStatus(),
-            'recipient'      => $this->getOrderRecipient()->toArray(),
+            'recipient'      => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
             'order_products' => array_map(function(OrderProduct $p) { return $p->toArray(); }, $this->orderProducts),
         ];
     }

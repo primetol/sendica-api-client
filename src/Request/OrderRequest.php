@@ -2,6 +2,7 @@
 
 namespace SendicaApi\Request;
 
+use SendicaApi\Model\Interfaces\ModelInterface;
 use SendicaApi\Response\OrderResponse;
 
 class OrderRequest extends AbstractRequest
@@ -21,5 +22,10 @@ class OrderRequest extends AbstractRequest
         $result = $this->client->request('GET', '/orders', []);
 
         return new OrderResponse($result);
+    }
+
+    public function post(ModelInterface $model)
+    {
+        $result = $this->client->request('POST', '/orders', $model->toArray());
     }
 }
