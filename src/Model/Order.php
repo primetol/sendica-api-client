@@ -61,13 +61,6 @@ final class Order implements ModelInterface
         return $this->refId;
     }
 
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getStatus()
     {
         return $this->status;
@@ -111,6 +104,8 @@ final class Order implements ModelInterface
     public function toArray()
     {
         return [
+            'refId'          => $this->getRefId(),
+            'status'         => $this->getStatus(),
             'recipient'      => $this->getOrderRecipient()->toArray(),
             'order_products' => array_map(function(OrderProduct $p) { return $p->toArray(); }, $this->orderProducts),
         ];

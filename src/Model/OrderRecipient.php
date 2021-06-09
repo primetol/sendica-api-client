@@ -76,7 +76,7 @@ final class OrderRecipient implements ModelInterface
         return $this->phone;
     }
 
-    public function setDeliveryAddress(DeliveryAddress $deliveryAddress)
+    public function setDeliveryAddress(DeliveryAddress $deliveryAddress = null)
     {
         $this->deliveryAddress = $deliveryAddress;
 
@@ -88,7 +88,7 @@ final class OrderRecipient implements ModelInterface
         return $this->deliveryAddress;
     }
 
-    public function setDeliveryCourierOffice(DeliveryCourierOffice $deliveryCourierOffice)
+    public function setDeliveryCourierOffice(DeliveryCourierOffice $deliveryCourierOffice = null)
     {
         $this->deliveryCourierOffice = $deliveryCourierOffice;
 

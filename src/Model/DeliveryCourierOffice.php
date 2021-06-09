@@ -7,9 +7,9 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 final class DeliveryCourierOffice implements ModelInterface
 {
     /** @var string */
-    private $shippingCourier;
-    /** @var string */
     private $courierOfficeId;
+    /** @var string */
+    private $shippingCourierType;
 
     public function __construct(array $data = [])
     {
@@ -17,21 +17,9 @@ final class DeliveryCourierOffice implements ModelInterface
             $this->courierOfficeId = $data['courier_office_id'];
         }
 
-        if (isset($data['shipping_courier'])) {
-            $this->shippingCourier = $data['shipping_courier'];
+        if (isset($data['shipping_courier_type'])) {
+            $this->shippingCourierType = $data['shipping_courier_type'];
         }
-    }
-
-    public function setShippingCourier($shippingCourier)
-    {
-        $this->shippingCourier = $shippingCourier;
-
-        return $this;
-    }
-
-    public function getShippingCourier()
-    {
-        return $this->shippingCourier;
     }
 
     public function setCourierOfficeId($courierOfficeId)
@@ -46,11 +34,24 @@ final class DeliveryCourierOffice implements ModelInterface
         return $this->courierOfficeId;
     }
 
+
+    public function getShippingCourierType()
+    {
+        return $this->shippingCourierType;
+    }
+
+    public function setShippingCourierType($shippingCourierType)
+    {
+        $this->shippingCourierType = $shippingCourierType;
+
+        return $this;
+    }
+
     public function toArray()
     {
         return [
-            'courier_office_id' => $this->getCourierOfficeId(),
-            'shipping_courier'  => $this->getShippingCourier(),
+            'courier_office_id'     => $this->getCourierOfficeId(),
+            'shipping_courier_type' => $this->getShippingCourierType(),
         ];
     }
 }
