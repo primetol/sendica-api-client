@@ -44,7 +44,7 @@ final class Client
                 curl_setopt($curlHandler, CURLOPT_POST, 1);
 
                 if ($data) {
-                    curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($curlHandler, CURLOPT_POSTFIELDS, json_encode($data));
                 }
 
                 break;
@@ -53,7 +53,7 @@ final class Client
                 curl_setopt($curlHandler, CURLOPT_CUSTOMREQUEST, 'PATCH');
 
                 if ($data) {
-                    curl_setopt($curlHandler, CURLOPT_POSTFIELDS, $data);
+                    curl_setopt($curlHandler, CURLOPT_POSTFIELDS, json_encode($data));
                 }
 
                 break;

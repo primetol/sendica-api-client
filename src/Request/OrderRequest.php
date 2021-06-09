@@ -27,5 +27,7 @@ class OrderRequest extends AbstractRequest
     public function post(ModelInterface $model)
     {
         $result = $this->client->request('POST', '/orders', $model->toArray());
+
+        return new OrderResponse($result);
     }
 }
