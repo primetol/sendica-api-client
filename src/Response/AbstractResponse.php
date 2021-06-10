@@ -42,7 +42,7 @@ abstract class AbstractResponse implements ResponseInterface
 
     public function handleBadResponse()
     {
-
+        $this->data = $this->response['message'];
     }
 
     public function getStatus()
