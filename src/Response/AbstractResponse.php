@@ -28,7 +28,21 @@ abstract class AbstractResponse implements ResponseInterface
         $this->type = $response['type'];
         $this->message = $response['message'];
 
-        $this->handleResponse();
+        if ($this->status >= 200 && $this->status < 400) {
+            $this->handleResponse();
+        } else {
+            $this->handleBadResponse();
+        }
+    }
+
+    public function handleResponse()
+    {
+
+    }
+
+    public function handleBadResponse()
+    {
+
     }
 
     public function getStatus()

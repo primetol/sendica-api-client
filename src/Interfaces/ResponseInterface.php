@@ -5,6 +5,7 @@ namespace SendicaApi\Interfaces;
 interface ResponseInterface
 {
     public function handleResponse();
+    public function handleBadResponse();
 
     /** @return int */
     public function getStatus();

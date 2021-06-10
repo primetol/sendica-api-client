@@ -8,6 +8,8 @@ final class OrderProduct implements ModelInterface
 {
     /** @var string */
     private $sku;
+    /** @var string */
+    private $name;
     /** @var int */
     private $quantity;
 
@@ -15,6 +17,10 @@ final class OrderProduct implements ModelInterface
     {
         if (isset($data['sku'])) {
             $this->sku = $data['sku'];
+        }
+
+        if (isset($data['name'])) {
+            $this->name = $data['name'];
         }
 
         if (isset($data['quantity'])) {
@@ -46,10 +52,23 @@ final class OrderProduct implements ModelInterface
         return $this;
     }
 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function toArray()
     {
         return [
             'sku'      => $this->sku,
+            'name'     => $this->name,
             'quantity' => $this->quantity,
         ];
     }
