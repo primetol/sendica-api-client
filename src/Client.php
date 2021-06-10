@@ -78,16 +78,12 @@ final class Client
 
         curl_close($ch);
 
-        if (empty($result)) {
-            $error = 'bad_response';
-        }
-
-        if ($statusCode >= 400) {
+        if ($statusCode >= 400 && empty($result)) {
             return [
                 'status'  => $statusCode,
                 'type'    => 'error',
                 'data'    => null,
-                'message' => $error,
+                'message' => $error ?: 'empty_response',
             ];
         }
 
