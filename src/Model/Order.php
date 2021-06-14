@@ -12,6 +12,8 @@ final class Order implements ModelInterface
     private $refId;
     /** @var string */
     private $status;
+    /** @var bool */
+    private $cacheOnDelivery;
     /** @var OrderRecipient */
     private $orderRecipient;
     /** @var OrderProduct[] */
@@ -29,6 +31,10 @@ final class Order implements ModelInterface
 
         if (isset($data['status'])) {
             $this->status = $data['status'];
+        }
+
+        if (isset($data['cache_on_delivery'])) {
+            $this->cacheOnDelivery = $data['cache_on_delivery'];
         }
 
         if (isset($data['recipient'])) {
@@ -64,6 +70,18 @@ final class Order implements ModelInterface
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function isCacheOnDelivery()
+    {
+        return (bool)$this->cacheOnDelivery;
+    }
+
+    public function setCacheOnDelivery($cacheOnDelivery)
+    {
+        $this->cacheOnDelivery = $cacheOnDelivery ?: false;
+
+        return $this;
     }
 
     public function setOrderRecipient(OrderRecipient $orderRecipient)
@@ -104,9 +122,10 @@ final class Order implements ModelInterface
     public function toArray()
     {
         return [
-            'refId'          => $this->getRefId(),
-            'recipient'      => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
-            'order_products' => array_map(function(OrderProduct $p) { return $p->toArray(); }, $this->orderProducts),
+            'refId'           => $this->getRefId(),
+            'cacheOnDelivery' => $this->isCacheOnDelivery(),
+            'recipient'       => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
+            'order_products'  => array_map(function(OrderProduct $p) { return $p->toArray(); }, $this->orderProducts),
         ];
     }
 }
