@@ -55,7 +55,7 @@ class Shipment implements ModelInterface
      */
     public function setInvoiceAmount($invoiceAmount)
     {
-        $this->invoiceAmount = $invoiceAmount;
+        $this->invoiceAmount = (float)$invoiceAmount;
 
         return $this;
     }
