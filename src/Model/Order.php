@@ -111,6 +111,27 @@ final class Order implements ModelInterface
         return $this->orderProducts;
     }
 
+    public function addShipment(Shipment $shipment)
+    {
+        $this->shipments[] = $shipment;
+
+        return $this;
+    }
+
+    public function setShipments($shipments)
+    {
+        foreach ($shipments as $shipment) {
+            $this->addShipment($shipment);
+        }
+
+        return $this;
+    }
+
+    public function getShipments()
+    {
+        return $this->shipments;
+    }
+
     public function toArray()
     {
         return [
