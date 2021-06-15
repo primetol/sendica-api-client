@@ -7,6 +7,8 @@ use SendicaApi\Model\Interfaces\ModelInterface;
 class Shipment implements ModelInterface
 {
     /** @var bool */
+    private $declaredValue;
+    /** @var bool */
     private $cacheOnDelivery;
     /** @var float */
     private $invoiceAmount;
@@ -15,6 +17,10 @@ class Shipment implements ModelInterface
 
     public function __construct(array $data = [])
     {
+        if (isset($data['declared_value'])) {
+            $this->declaredValue = $data['declared_value'];
+        }
+
         if (isset($data['cache_on_delivery'])) {
             $this->cacheOnDelivery = $data['cache_on_delivery'];
         }
@@ -28,11 +34,18 @@ class Shipment implements ModelInterface
         }
     }
 
-    /**
-     * @param bool $cacheOnDelivery
-     *
-     * @return Shipment
-     */
+    public function isDeclaredValue()
+    {
+        return (bool)$this->declaredValue;
+    }
+
+    public function setDeclaredValue($declaredValue)
+    {
+        $this->declaredValue = (bool)$declaredValue;
+
+        return $this;
+    }
+
     public function setCacheOnDelivery($cacheOnDelivery)
     {
         $this->cacheOnDelivery = (bool)$cacheOnDelivery;
@@ -40,19 +53,11 @@ class Shipment implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isCacheOnDelivery()
     {
         return (bool)$this->cacheOnDelivery;
     }
 
-    /**
-     * @param float $invoiceAmount
-     *
-     * @return Shipment
-     */
     public function setInvoiceAmount($invoiceAmount)
     {
         $this->invoiceAmount = (float)$invoiceAmount;
@@ -60,19 +65,11 @@ class Shipment implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return float
-     */
     public function getInvoiceAmount()
     {
         return $this->invoiceAmount;
     }
 
-    /**
-     * @param string $invoiceCurrency
-     *
-     * @return Shipment
-     */
     public function setInvoiceCurrency($invoiceCurrency)
     {
         $this->invoiceCurrency = $invoiceCurrency;
@@ -80,9 +77,6 @@ class Shipment implements ModelInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getInvoiceCurrency()
     {
         return $this->invoiceCurrency;
@@ -91,6 +85,7 @@ class Shipment implements ModelInterface
     public function toArray()
     {
         return [
+            'declared_value'    => $this->declaredValue,
             'cache_on_delivery' => $this->cacheOnDelivery,
             'invoice_amount'    => $this->invoiceAmount,
             'invoice_currency'  => $this->invoiceCurrency,
