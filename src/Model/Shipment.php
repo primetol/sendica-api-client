@@ -14,6 +14,8 @@ class Shipment implements ModelInterface
     private $invoiceAmount;
     /** @var string */
     private $invoiceCurrency;
+    /** @var string */
+    private $courierLabelDescription;
 
     public function __construct(array $data = [])
     {
@@ -31,6 +33,10 @@ class Shipment implements ModelInterface
 
         if (isset($data['invoice_currency'])) {
             $this->invoiceCurrency = $data['invoice_currency'];
+        }
+
+        if (isset($data['courier_label_description'])) {
+            $this->courierLabelDescription = $data['courier_label_description'];
         }
     }
 
@@ -82,13 +88,26 @@ class Shipment implements ModelInterface
         return $this->invoiceCurrency;
     }
 
+    public function setCourierLabelDescription($courierLabelDescription)
+    {
+        $this->courierLabelDescription = $courierLabelDescription;
+
+        return $this;
+    }
+
+    public function getCourierLabelDescription()
+    {
+        return $this->courierLabelDescription;
+    }
+
     public function toArray()
     {
         return [
-            'declared_value'    => $this->declaredValue,
-            'cache_on_delivery' => $this->cacheOnDelivery,
-            'invoice_amount'    => $this->invoiceAmount,
-            'invoice_currency'  => $this->invoiceCurrency,
+            'declared_value'            => $this->declaredValue,
+            'cache_on_delivery'         => $this->cacheOnDelivery,
+            'invoice_amount'            => $this->invoiceAmount,
+            'invoice_currency'          => $this->invoiceCurrency,
+            'courier_label_description' => $this->courierLabelDescription,
         ];
     }
 }
