@@ -135,7 +135,7 @@ final class Order implements ModelInterface
     public function toArray()
     {
         return [
-            'refId'          => $this->getRefId(),
+            'ref_id'         => $this->getRefId(),
             'recipient'      => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
             'order_products' => array_map(function(OrderProduct $p) {return $p->toArray();}, $this->orderProducts),
             'shipments'      => array_map(function(Shipment $s) {return $s->toArray();}, $this->shipments),
