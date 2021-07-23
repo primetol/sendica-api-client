@@ -3,6 +3,7 @@
 namespace SendicaApi\Request;
 
 use SendicaApi\Model\Interfaces\ModelInterface;
+use SendicaApi\Response\EmptyResponse;
 use SendicaApi\Response\ProductResponse;
 
 class ProductRequest extends AbstractRequest
@@ -35,6 +36,6 @@ class ProductRequest extends AbstractRequest
     {
         $result = $this->client->request('PATCH', '/products/' . $identifier, $model->toArray());
 
-        return new ProductResponse($result);
+        return new EmptyResponse($result ?: []);
     }
 }
