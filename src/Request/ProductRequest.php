@@ -33,7 +33,7 @@ class ProductRequest extends AbstractRequest
 
     public function patch($identifier, ModelInterface $model)
     {
-        $result = $this->client->request('PATCH', '/products', $model->toArray());
+        $result = $this->client->request('PATCH', '/products/' . $identifier, $model->toArray());
 
         return new ProductResponse($result);
     }
