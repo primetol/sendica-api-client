@@ -12,6 +12,8 @@ final class OrderProduct implements ModelInterface
     private $name;
     /** @var int */
     private $quantity;
+    /** @var float */
+    private $price;
 
     public function __construct(array $data = [])
     {
@@ -25,6 +27,10 @@ final class OrderProduct implements ModelInterface
 
         if (isset($data['quantity'])) {
             $this->quantity = $data['quantity'];
+        }
+
+        if (isset($data['price'])) {
+            $this->price = $data['price'];
         }
     }
 
@@ -64,12 +70,25 @@ final class OrderProduct implements ModelInterface
         return $this;
     }
 
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
     public function toArray()
     {
         return [
             'sku'      => $this->sku,
             'name'     => $this->name,
             'quantity' => $this->quantity,
+            'price'    => $this->price,
         ];
     }
 }
