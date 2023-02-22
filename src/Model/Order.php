@@ -18,7 +18,12 @@ final class Order implements ModelInterface
     private $orderProducts;
     /** @var Shipment[] */
     private $shipments;
+    /** @var string */
+    private $parcelLabel;
 
+    /**
+     * @param array $data
+     */
     public function __construct(array $data = [])
     {
         if (isset($data['id'])) {
@@ -51,6 +56,10 @@ final class Order implements ModelInterface
             foreach ($data['shipments'] as $shipment) {
                 $this->shipments[] = new Shipment($shipment);
             }
+        }
+
+        if (isset($data['parcel_label'])) {
+            $this->parcelLabel = $data['parcel_label'];
         }
     }
 
@@ -132,6 +141,18 @@ final class Order implements ModelInterface
         return $this->shipments;
     }
 
+    public function setParcelLabel($parcelLabel)
+    {
+        $this->parcelLabel = $parcelLabel;
+
+        return $this;
+    }
+
+    public function getParcelLabel()
+    {
+        return $this->parcelLabel;
+    }
+
     public function toArray()
     {
         return [
@@ -139,6 +160,7 @@ final class Order implements ModelInterface
             'recipient'      => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
             'order_products' => array_map(function(OrderProduct $p) {return $p->toArray();}, $this->orderProducts),
             'shipments'      => array_map(function(Shipment $s) {return $s->toArray();}, $this->shipments),
+            'parcel_label'   => $this->getParcelLabel(),
         ];
     }
 }
