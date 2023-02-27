@@ -20,6 +20,8 @@ final class Order implements ModelInterface
     private $shipments;
     /** @var string */
     private $parcelLabel;
+    /** @var string */
+    private $trackingNumber;
 
     /**
      * @param array $data
@@ -60,6 +62,10 @@ final class Order implements ModelInterface
 
         if (isset($data['parcel_label'])) {
             $this->parcelLabel = $data['parcel_label'];
+        }
+
+        if (isset($data['tracking_number'])) {
+            $this->trackingNumber = $data['tracking_number'];
         }
     }
 
@@ -153,14 +159,27 @@ final class Order implements ModelInterface
         return $this->parcelLabel;
     }
 
+    public function setTrackingNumber($trackingNumber)
+    {
+        $this->trackingNumber = $trackingNumber;
+
+        return $this;
+    }
+
+    public function getTrackingNumber()
+    {
+        return $this->trackingNumber;
+    }
+
     public function toArray()
     {
         return [
-            'ref_id'         => $this->getRefId(),
-            'recipient'      => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
-            'order_products' => array_map(function(OrderProduct $p) {return $p->toArray();}, $this->orderProducts),
-            'shipments'      => array_map(function(Shipment $s) {return $s->toArray();}, $this->shipments),
-            'parcel_label'   => $this->getParcelLabel(),
+            'ref_id'          => $this->getRefId(),
+            'recipient'       => $this->orderRecipient ? $this->orderRecipient->toArray() : null,
+            'order_products'  => array_map(function(OrderProduct $p) {return $p->toArray();}, $this->orderProducts),
+            'shipments'       => array_map(function(Shipment $s) {return $s->toArray();}, $this->shipments),
+            'parcel_label'    => $this->getParcelLabel(),
+            'tracking_number' => $this->getTrackingNumber(),
         ];
     }
 }
